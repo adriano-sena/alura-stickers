@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class App {
-    private static String resultado;
-
+   
     public static void main(String[] args) throws Exception {
         
         //Conexão HTTP para buscar os filmes da api 
@@ -24,7 +23,7 @@ public class App {
         //requisição realizada de fato e parseando a o body para uma srting            
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
         var json = response.body();
-        System.out.println(resultado);
+        // System.out.println(json);
 
         //parsear os dados que nos interessam (titulo, poster, classificacao)
         var parser = new JsonParser();
@@ -33,11 +32,15 @@ public class App {
 
         //Exibir e manipular os dados
 
-        // for (Map<String,String> filme : listaDeFilmes) {
-        //  System.out.println(filme.get("title"));      
-        //  System.out.println(filme.get("image"));      
-        //  System.out.println(filme.get(""));
-        //  System.out.println("");;      
-        // }
+        TerminalPretier pretier = new TerminalPretier();
+
+        for (Map<String,String> filme : listaDeFilmes) {
+         System.out.println((pretier.boldText("Titulo : ") + filme.get("title")));      
+         System.out.println((pretier.boldText("Poster : ") + filme.get("image")));      
+         System.out.println((pretier.boldText("Nota   : ") + pretier.ratingStars(filme.get("imDbRating"))));    
+         System.out.println(pretier.resetFormat());   
+         System.out.println("");      
+
+        }
     }
 }
