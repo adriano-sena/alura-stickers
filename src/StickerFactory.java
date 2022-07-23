@@ -33,12 +33,12 @@ public class StickerFactory {
         graphics.drawImage(imagemOriginal, 0, 0, null);
 
         //configurar fonte 
-        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 128);
+        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 64);
         graphics.setColor(Color.YELLOW);
         graphics.setFont(font);
 
         //Escrever uma legenda na nova imagem 
-        graphics.drawString("CLÁSSICOS", 500, novaAltura - 80);
+        graphics.drawString("CLÁSSICOS", 100, novaAltura - 100);
 
         //Escrever a nova imagem em um arquivo (Refatoriar para utilizar outra assinatura do new File)        
         ImageIO.write(novaImagem, "png", new File(nomeArquivo));
